@@ -161,7 +161,7 @@ public class BinaryTree {
 	}
 
 	/**
-	 * 
+	 * Retorna o número de nodos folha.
 	 * @param n
 	 * @return
 	 */
