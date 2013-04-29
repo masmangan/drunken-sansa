@@ -5,7 +5,6 @@ public class BinaryTree {
 
 	// ReferÃªncia para a raiz da Ã¡rvore. Ã‰ null para o caso de uma
 	// Ã¡rvore vazia.
-
 	private Node root;
 
 	/*
@@ -95,32 +94,159 @@ public class BinaryTree {
 	private int count(Node n) {
 		if (n == null)
 			return 0;
-		
+
 		return 1 + count(n.left) + count(n.right);
 	}
 
 	public int countLeaves() {
-		if (root == null)
-			return 0;		
+		// if (root == null)
+		// return 0;
 		return countLeaves(root);
 	}
 
 	private int countLeaves(Node n) {
 		if (n == null)
-			return 0;		
+			return 0;
 		if (n.left == null && n.right == null)
 			return 1;
-	
-		return countLeaves(n.left) + countLeaves(n.right);  
+
+		return countLeaves(n.left) + countLeaves(n.right);
 	}
+
+	public boolean isEmpty() {
+		return root == null;
+	}
+
+	// getParent(elem) - um método que informa o valor armazenado no pai de um
+	// nodo com conteúdo elem.
+	public int getParent(int elem) {
+		return getParent(root, null, elem);
+	}
+
+	/**
+	 * Gera uma exceção caso o valor e não seja encontrado.
+	 * 
+	 * @param n
+	 * @param p
+	 * @param e
+	 * @return
+	 */
+	private int getParent(Node n, Node p, int e) {
+		if (n == null)
+			throw new RuntimeException("Elemento não encontrado!");
+		if (n.data == e) {
+			if (p == null)
+				throw new RuntimeException("Não existe pai!");
+			return p.data;
+		}
+		if (e < n.data)
+			return getParent(n.left, n, e);
+
+		return getParent(n.right, n, e);
+	}
+
+	public int getParent2(int elem) {
+		return getParent2(root, elem);
+	}
+
+	private int getParent2(Node n, int e) {
+		if (n == null)
+			throw new RuntimeException("Elemento não encontrado!");
+
+		if (e < n.data) {
+			if (n.left != null && n.left.data == e)
+				return n.data;
+			return getParent2(n.left, e);
+		}
+		if (n.right != null && n.right.data == e)
+			return n.data;
+		return getParent2(n.right, e);
+	}
+
+	public int getUncle(int elem) {
+		return getUncle(root, null, null, elem);
+	}
+
+	private int getUncle(Node n, Node p, Node a, int e) {
+		if (n == null)
+			throw new RuntimeException("Elemento não encontrado!");
+		if (n.data == e) {
+			if (a == null)
+				throw new RuntimeException("Não existe avo!");
+			if (a.data < e && a.left != null)
+				return a.left.data;
+			if (a.data > e && a.right != null)
+				return a.right.data;
+			throw new RuntimeException("Nao existe tio.");
+		}
+		if (e < n.data)
+			return getUncle(n.left, n, p, e);
+		return getUncle(n.right, n, p, e);
+
+	}
+
+	public int getGrau(int element) {
+		return getGrau(root, element);
+	}
+
+	private int getGrau(Node n, int e) {
+		if (n == null) {
+			throw new RuntimeException("Elemento não encontrado!");
+		}
+		if (n.data == e) {
+			if (n.left == null && n.right == null)
+				return 0;
+			if (n.left != null && n.right != null)
+				return 2;
+			return 1;
+		}
+		if (e < n.data)
+			return getGrau(n.left, e);
+
+		return getGrau(n.right, e);
+
+	}
+
+	public int getAltura(int elem) {
+		return getAltura(root, elem);
+	}
+
+	private int getAltura(Node n, int e) {
+		if (n == null)
+			throw new RuntimeException("Elemento não encontrado!");
+		if (n.data == e) {
+			return altura(n);
+		}
+		if (e < n.data)
+			return getAltura(n.left, e);
+
+		return getAltura(n.right, e);
+	}
+
+	private int altura(Node n) {
+		if (n == null) {
+			return -1;
+		}
+		return 1 
+				+ Math.max(altura(n.left), 
+						altura(n.right));
+	}
+
+	public int getNivel(int elem) {
+		return getNivel(root, elem, 0);
+	}
+
+	private int getNivel(Node n, int e, int c) {
+		if (n == null)
+			throw new RuntimeException("Elemento não encontrado!");
+		if (n.data == e) {
+			return c;
+		}
+		if (e < n.data)
+			return getNivel(n.left, e, c + 1);
+
+		return getNivel(n.right, e, c + 1);
+	
+	}
+
 }
-
-
-
-
-
-
-
-
-
-

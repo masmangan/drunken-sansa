@@ -103,5 +103,95 @@ public class BinaryTreeTest {
 		int expected = 2;
 		assertEquals(expected, actual);
 	}
+	@Test
+	public void testTio() {
+		BinaryTree t = new BinaryTree();
+		t.insert(122);
+		t.insert(121);
+		t.insert(123);
+		t.insert(120);
+		
+		int actual = t.getUncle(120);
+		int expected = 123;
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void testGrau() {
+		BinaryTree t = new BinaryTree();
+		t.insert(122);
+		t.insert(121);
+		t.insert(123);
+		t.insert(120);
+		
+		int actual = t.getGrau(120);
+		int expected = 0;
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void testGrau2() {
+		BinaryTree t = new BinaryTree();
+		t.insert(122);
+		t.insert(121);
+		t.insert(123);
+		t.insert(120);
+		
+		int actual = t.getGrau(122);
+		int expected = 2;
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void testGrau1() {
+		BinaryTree t = new BinaryTree();
+		t.insert(122);
+		t.insert(121);
+		t.insert(123);
+		t.insert(120);
+		
+		int actual = t.getGrau(121);
+		int expected = 1;
+		assertEquals(expected, actual);
+	}
+
+	
+	@Test
+	public void testAlturaFolha() {
+		BinaryTree t = new BinaryTree();
+		t.insert(122);
+		t.insert(121);
+		t.insert(123);
+		t.insert(120);
+		
+		int actual = t.getAltura(123);
+		int expected = 0;
+		assertEquals(expected, actual);
+		actual = t.getAltura(120);
+		expected = 0;
+		assertEquals(expected, actual);
+	}	
+
+	@Test
+	public void testAlturaRaiz() {
+		BinaryTree t = new BinaryTree();
+		t.insert(122);
+		t.insert(121);
+		t.insert(123);
+		t.insert(120);
+		
+		int actual = t.getGrau(122);
+		int expected = 2;
+		assertEquals(expected, actual);
+	}		
+	
+	@Test(expected=java.lang.RuntimeException.class)
+	public void testTioArvoreVazia() {
+		BinaryTree t = new BinaryTree();
+		
+		t.getUncle(120);
+		fail();
+	}
+
 	
 }
