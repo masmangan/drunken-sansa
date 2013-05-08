@@ -1,9 +1,8 @@
 package pucrs.alpro3.exceptions;
 
+@SuppressWarnings("serial")
 public class ItemNotFoundException extends Exception {
-
-	public ItemNotFoundException(String string) {
-		// TODO Auto-generated constructor stub
+	public ItemNotFoundException(String s) {
+		super(s);
 	}
-
 }

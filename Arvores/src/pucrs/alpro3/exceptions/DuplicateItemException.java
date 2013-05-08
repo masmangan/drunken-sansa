@@ -1,9 +1,8 @@
 package pucrs.alpro3.exceptions;
 
+@SuppressWarnings("serial")
 public class DuplicateItemException extends Exception {
-
-	public DuplicateItemException(String string) {
-		// TODO Auto-generated constructor stub
+	public DuplicateItemException(String s) {
+		super(s);
 	}
-
 }
