@@ -1,4 +1,4 @@
-package pucrs.alpro3;
+package pucrs.alpro3.simple;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;

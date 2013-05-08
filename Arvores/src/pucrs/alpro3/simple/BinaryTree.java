@@ -1,4 +1,4 @@
-package pucrs.alpro3;
+package pucrs.alpro3.simple;
 
 /**
  * A classe <code>BinaryTree</code> é uma implementação
