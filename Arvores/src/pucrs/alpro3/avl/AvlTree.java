@@ -1,7 +1,5 @@
 package pucrs.alpro3.avl;
 
-// TESTE
-
 // AvlTree class
 //
 // CONSTRUCTION: with no initializer
@@ -271,9 +269,9 @@ public class AvlTree<AnyType extends Comparable<? super AnyType>> {
 
 	private static class AvlNode<AnyType> {
 		// Constructors
-		//AvlNode(AnyType theElement) {
-		//	this(theElement, null, null);
-		//}
+		// AvlNode(AnyType theElement) {
+		// this(theElement, null, null);
+		// }
 
 		AvlNode(AnyType theElement, AvlNode<AnyType> lt, AvlNode<AnyType> rt) {
 			element = theElement;
@@ -295,7 +293,7 @@ public class AvlTree<AnyType extends Comparable<? super AnyType>> {
 	public static void main(String[] args) {
 		AvlTree<Integer> t = new AvlTree<Integer>();
 		final int NUMS = 20;
-		final int GAP = 37;
+		final int GAP = 1;
 
 		System.out.println("Checking... (no more output means success)");
 

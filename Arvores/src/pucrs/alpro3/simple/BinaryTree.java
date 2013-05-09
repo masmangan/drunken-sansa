@@ -387,5 +387,45 @@ public class BinaryTree {
 			return getNivel(n.right, e, c + 1);
 
 	}
+	
+	public void printPreOrder()
+	{
+		printPreOrder(root);
+	}
 
+	public void printInOrder()
+	{
+		printInOrder(root);
+	}
+
+	public void printPostOrder()
+	{
+		printPostOrder(root);
+	}
+	
+	private void printPreOrder(Node n) { 
+		if (n == null)
+			return;
+		System.out.println(n.data);
+		printPreOrder(n.left);
+		printPreOrder(n.right);
+	}
+
+
+	private void printInOrder(Node n) { // Central
+		if (n == null)
+			return;
+		printPreOrder(n.left);
+		System.out.println(n.data);
+		printPreOrder(n.right);
+	}
+	
+	private void printPostOrder(Node n) { // Central
+		if (n == null)
+			return;
+		printPreOrder(n.left);
+		printPreOrder(n.right);
+		System.out.println(n.data);
+	}	
+	
 }
