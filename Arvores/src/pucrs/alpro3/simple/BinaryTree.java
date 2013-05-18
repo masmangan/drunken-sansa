@@ -1,10 +1,12 @@
 package pucrs.alpro3.simple;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * A classe <code>BinaryTree</code> é uma implementação
- * de árvore binária conforme as discussões realizadas
- * durante as aulas de Algoritmos e Programação III, de
- * 2013/1.
+ * A classe <code>BinaryTree</code> é uma implementação de árvore binária
+ * conforme as discussões realizadas durante as aulas de Algoritmos e
+ * Programação III, de 2013/1.
  * 
  * @author marco.mangan@pucrs.br
  * 
@@ -39,9 +41,8 @@ public class BinaryTree {
 	}
 
 	/**
-	 * Insere um novo nodo com <code>data</code>.
-	 * Chaves repetidas são permitidas.
-	 * (Esta implementação utiliza um laço enquanto.)
+	 * Insere um novo nodo com <code>data</code>. Chaves repetidas são
+	 * permitidas. (Esta implementação utiliza um laço enquanto.)
 	 * 
 	 * @param data
 	 */
@@ -50,15 +51,14 @@ public class BinaryTree {
 	}
 
 	/**
-	 * Insere um novo nodo com <code>data</code>.
-	 * Chaves repetidas são permitidas.
-	 * (Esta implementação utiliza recursividade.)
+	 * Insere um novo nodo com <code>data</code>. Chaves repetidas são
+	 * permitidas. (Esta implementação utiliza recursividade.)
 	 * 
 	 * @param data
 	 */
 	public void insert2(int data) {
 		root = insert2(root, data);
-	}	
+	}
 
 	/**
 	 * Destroi uma árvore chamando um método interno
@@ -67,16 +67,16 @@ public class BinaryTree {
 		destroy(root);
 		root = null;
 	}
-	
+
 	/**
 	 * Conta quantos nodos estão presentes na árvore.
-	 *  
+	 * 
 	 * @return o número de nodos na árvore.
 	 */
 	public int count() {
 		return count(root);
 	}
-	
+
 	/**
 	 * 
 	 * @param root
@@ -151,8 +151,8 @@ public class BinaryTree {
 	}
 
 	/**
-	 * Conta o número de nodos folha na árvore.
-	 * Um nodo folha é um nodo sem filhos.
+	 * Conta o número de nodos folha na árvore. Um nodo folha é um nodo sem
+	 * filhos.
 	 * 
 	 * @return o número de nodos folha.
 	 */
@@ -162,6 +162,7 @@ public class BinaryTree {
 
 	/**
 	 * Retorna o número de nodos folha.
+	 * 
 	 * @param n
 	 * @return
 	 */
@@ -194,11 +195,15 @@ public class BinaryTree {
 	}
 
 	/**
-	 * Gera uma exceção caso o valor e não for encontrado.
-	 * (Esta versão causa uma chamada recursiva adicional.)
-	 * @param n o nodo a ser processado
-	 * @param p o nodo pai do nodo n
-	 * @param e o valor a ser encontrado
+	 * Gera uma exceção caso o valor e não for encontrado. (Esta versão causa
+	 * uma chamada recursiva adicional.)
+	 * 
+	 * @param n
+	 *            o nodo a ser processado
+	 * @param p
+	 *            o nodo pai do nodo n
+	 * @param e
+	 *            o valor a ser encontrado
 	 * 
 	 * @return o valor armazenado no nodo pai de n.
 	 */
@@ -242,7 +247,7 @@ public class BinaryTree {
 		}
 		if (n.right != null && n.right.data == e)
 			return n.data;
-		
+
 		return getParent2(n.right, e);
 	}
 
@@ -266,7 +271,7 @@ public class BinaryTree {
 	private int getUncle(Node n, Node p, Node a, int e) {
 		if (n == null)
 			throw new RuntimeException("Elemento não encontrado!");
-		
+
 		if (n.data == e) {
 			if (a == null)
 				throw new RuntimeException("Não existe avo!");
@@ -276,7 +281,7 @@ public class BinaryTree {
 				return a.right.data;
 			throw new RuntimeException("Nao existe tio.");
 		}
-		
+
 		if (e < n.data)
 			return getUncle(n.left, n, p, e);
 		else
@@ -310,7 +315,7 @@ public class BinaryTree {
 				return 2;
 			return 1;
 		}
-		
+
 		if (e < n.data)
 			return getGrau(n.left, e);
 		else
@@ -336,10 +341,10 @@ public class BinaryTree {
 	private int getAltura(Node n, int e) {
 		if (n == null)
 			throw new RuntimeException("Elemento não encontrado!");
-		
+
 		if (n.data == e)
 			return altura(n);
-	
+
 		if (e < n.data)
 			return getAltura(n.left, e);
 		else
@@ -354,7 +359,7 @@ public class BinaryTree {
 	private int altura(Node n) {
 		if (n == null)
 			return -1;
-		
+
 		return 1 + Math.max(altura(n.left), altura(n.right));
 	}
 
@@ -377,55 +382,164 @@ public class BinaryTree {
 	private int getNivel(Node n, int e, int c) {
 		if (n == null)
 			throw new RuntimeException("Elemento não encontrado!");
-		
+
 		if (n.data == e)
 			return c;
-		
+
 		if (e < n.data)
 			return getNivel(n.left, e, c + 1);
 		else
 			return getNivel(n.right, e, c + 1);
 
 	}
-	
-	public void printPreOrder()
-	{
+
+	public void printPreOrder() {
 		printPreOrder(root);
 	}
 
-	public void printInOrder()
-	{
+	public void printInOrder() {
 		printInOrder(root);
 	}
 
-	public void printPostOrder()
-	{
+	public void printPostOrder() {
 		printPostOrder(root);
 	}
-	
-	private void printPreOrder(Node n) { 
+
+	private void printPreOrder(Node n) {
 		if (n == null)
 			return;
 		System.out.println(n.data);
 		printPreOrder(n.left);
 		printPreOrder(n.right);
 	}
-
 
 	private void printInOrder(Node n) { // Central
 		if (n == null)
 			return;
-		printPreOrder(n.left);
+		printInOrder(n.left);
 		System.out.println(n.data);
-		printPreOrder(n.right);
+		printInOrder(n.right);
 	}
-	
-	private void printPostOrder(Node n) { // Central
+
+	private void printPostOrder(Node n) {
 		if (n == null)
 			return;
-		printPreOrder(n.left);
-		printPreOrder(n.right);
+		printPostOrder(n.left);
+		printPostOrder(n.right);
 		System.out.println(n.data);
+	}
+
+	public void printByLevel() {
+		int h = getAltura(root.data);
+
+		for (int i = 0; i <= h; i++) {
+			System.out.printf("Nível: %d\n", i);
+			printByLevel(root, i, 0);
+		}
+	}
+
+	private void printByLevel(Node n, int level, int count) {
+		if (n == null)
+			return;
+		if (level == count) {
+			System.out.println("*" + n.data);
+		} else {
+			printByLevel(n.left, level, count + 1);
+			printByLevel(n.right, level, count + 1);
+		}
+
+	}
+
+	public void questao8() {
+		int h = getAltura(root.data);
+
+		for (int i = 0; i <= h; i++) {
+			
+			List<Integer> l = new ArrayList<Integer>();
+			getByLevel(l, root, i, 0);
+			int p = 0;
+			for (Integer x : l) {
+				if (x % 2 == 0) {
+					p++;
+				}
+			}
+			System.out.printf("Nível %d\n", i);
+			System.out.println(l);
+
+			if (p == 0) {
+				System.out.printf("***Nível composto por ímpares!\n");
+			}
+			
+		}
+		
+	}
+
+	private void getByLevel(List<Integer> nodes, Node n, int level, int count) {
+		if (n == null)
+			return;
+		if (level == count) {
+			nodes.add(n.data);
+		} else {
+			getByLevel(nodes, n.left, level, count + 1);
+			getByLevel(nodes, n.right, level, count + 1);
+		}
+
+	}
+
+	// todos os caminhos formados por pares.
+	public void questao7()
+	{
+		processar(root);
+	}
+	
+	private void processar(Node n) {
+		if (n != null) {
+			
+			List<Integer> l = new ArrayList<Integer>();
+			getCaminho(l, root, n.data);
+			System.out.println(l);
+			
+			processar(n.left);
+			processar(n.right);
+		}
+	}
+	
+	private void getCaminho(List<Integer> nodes, Node n, int e) {
+		if (n == null)
+			throw new RuntimeException("Elemento não encontrado!");
+
+		if (n.data % 2 == 1) {
+			nodes.clear();
+			return;
+			// o caminho contém um ímpar!!! Não há resposta!
+		}
+		nodes.add(n.data);
+		if (n.data == e) {
+			return;
+			// final do caminho, nodes contém a resposta!
+		}
+
+		if (e < n.data)
+			getCaminho(nodes, n.left, e);
+		else
+			getCaminho(nodes, n.right, e);
 	}	
 	
+	public static void main(String[] args) {
+		BinaryTree t = new BinaryTree();
+		t.insert2(8);
+		t.insert2(12);
+		t.insert2(4);
+		t.insert2(6);
+		t.insert2(2);
+		t.insert2(14);
+		//t.insert2(6);
+		//t.insert2(8);
+
+		// t.printInOrder();
+		//t.printByLevel();
+		//t.questao8();
+		t.questao7();
+	}
+
 }
